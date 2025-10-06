@@ -1,0 +1,48 @@
+.gamePage {
+  width: 100%;
+  max-width: 900px;
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.title {
+  font-size: 2rem;
+  margin: 0;
+  color: #2d3748;
+}
+
+.gameArea {
+  margin: 2rem 0;
+  padding: 2rem;
+  background-color: #f7fafc;
+  border-radius: 12px;
+  min-height: 300px;
+}
+
+.towers {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  gap: 2rem;
+  height: 300px;
+}
+
+.hint {
+  text-align: center;
+  padding: 1rem;
+  background-color: #edf2f7;
+  border-radius: 8px;
+  margin-top: 1rem;
+}
+
+.hint p {
+  margin: 0;
+  color: #4a5568;
+  font-size: 0.9rem;
+}

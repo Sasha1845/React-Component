@@ -1,35 +1,59 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import StartPage from "./pages/StartPage/StartPage";
+import GamePage from "./pages/GamePage/GamePage";
+import ResultsPage from "./pages/ResultsPage/ResultsPage";
+import styles from "./App.module.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [currentPage, setCurrentPage] = useState("start");
+  const [gameData, setGameData] = useState({
+    difficulty: 3,
+    moves: 0,
+    time: 0,
+  });
+
+  const startGame = (difficulty) => {
+    setGameData({
+      difficulty: difficulty,
+      moves: 0,
+      time: 0,
+    });
+    setCurrentPage("game");
+  };
+
+  const finishGame = (moves, time) => {
+    setGameData({
+      ...gameData,
+      moves: moves,
+      time: time,
+    });
+    setCurrentPage("results");
+  };
+
+  const resetGame = () => {
+    setCurrentPage("start");
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className={styles.app}>
+      {currentPage === "start" && <StartPage onStart={startGame} />}
+      {currentPage === "game" && (
+        <GamePage
+          difficulty={gameData.difficulty}
+          onFinish={finishGame}
+          onBack={resetGame}
+        />
+      )}
+      {currentPage === "results" && (
+        <ResultsPage
+          moves={gameData.moves}
+          time={gameData.time}
+          difficulty={gameData.difficulty}
+          onRestart={resetGame}
+        />
+      )}
+    </div>
+  );
 }
 
-export default App
+export default App;
