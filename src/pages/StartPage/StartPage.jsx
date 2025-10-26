@@ -1,10 +1,10 @@
-import { useState } from "react";
 import Button from "../../components/Button/Button";
 import Card from "../../components/Card/Card";
+import { useDifficultySelector } from "../../hooks/useDifficultySelector";
 import styles from "./StartPage.module.css";
 
 function StartPage({ onStart }) {
-  const [difficulty, setDifficulty] = useState(3);
+  const { difficulty, selectDifficulty } = useDifficultySelector();
 
   return (
     <div className={styles.startPage}>
@@ -16,19 +16,19 @@ function StartPage({ onStart }) {
           <h2 className={styles.sectionTitle}>Оберіть складність</h2>
           <div className={styles.difficultyButtons}>
             <Button
-              onClick={() => setDifficulty(3)}
+              onClick={() => selectDifficulty(3)}
               variant={difficulty === 3 ? "primary" : "secondary"}
             >
               Легко (3 диски)
             </Button>
             <Button
-              onClick={() => setDifficulty(4)}
+              onClick={() => selectDifficulty(4)}
               variant={difficulty === 4 ? "primary" : "secondary"}
             >
               Середньо (4 диски)
             </Button>
             <Button
-              onClick={() => setDifficulty(5)}
+              onClick={() => selectDifficulty(5)}
               variant={difficulty === 5 ? "primary" : "secondary"}
             >
               Важко (5 дисків)

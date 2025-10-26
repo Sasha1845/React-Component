@@ -1,15 +1,24 @@
-import { useState } from "react";
 import Button from "../../components/Button/Button";
 import Card from "../../components/Card/Card";
 import Tower from "../../components/Tower/Tower";
 import GameInfo from "../../components/GameInfo/GameInfo";
+import { useHanoiGame } from "../../hooks/useHanoiGame";
+import { useGameTimer } from "../../hooks/useGameTimer";
 import styles from "./GamePage.module.css";
 
 function GamePage({ difficulty, onFinish, onBack }) {
-  const [moves, setMoves] = useState(0);
-  const [time, setTime] = useState(0);
+  const {
+    towers,
+    selectedDisk,
+    moves,
+    isGameStarted,
+    isGameComplete,
+    handleTowerClick,
+  } = useHanoiGame(difficulty);
 
-  const handleFinishDemo = () => {
+  const { time } = useGameTimer(isGameStarted && !isGameComplete);
+
+  const handleFinish = () => {
     onFinish(moves, time);
   };
 
@@ -21,7 +30,7 @@ function GamePage({ difficulty, onFinish, onBack }) {
             ← Назад
           </Button>
           <h1 className={styles.title}>Гра</h1>
-          <Button onClick={handleFinishDemo} variant="success" size="small">
+          <Button onClick={handleFinish} variant="success" size="small">
             Завершити
           </Button>
         </div>
@@ -30,9 +39,16 @@ function GamePage({ difficulty, onFinish, onBack }) {
 
         <div className={styles.gameArea}>
           <div className={styles.towers}>
-            <Tower id={1} disks={[]} />
-            <Tower id={2} disks={[]} />
-            <Tower id={3} disks={[]} />
+            {towers.map((disks, index) => (
+              <Tower
+                key={index}
+                id={index + 1}
+                disks={disks}
+                onTowerClick={() => handleTowerClick(index)}
+                selectedDisk={selectedDisk}
+                towerIndex={index}
+              />
+            ))}
           </div>
         </div>
 
@@ -42,6 +58,15 @@ function GamePage({ difficulty, onFinish, onBack }) {
             переміщення
           </p>
         </div>
+
+        {isGameComplete && (
+          <div className={styles.completeMessage}>
+            <p>Вітаємо! Ви завершили гру!</p>
+            <Button onClick={handleFinish} variant="success" size="large">
+              Переглянути результати
+            </Button>
+          </div>
+        )}
       </Card>
     </div>
   );
