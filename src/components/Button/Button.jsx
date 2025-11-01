@@ -6,6 +6,7 @@ function Button({
   variant = "primary",
   size = "medium",
   disabled = false,
+  type = "button",
 }) {
   const classNames = [
     styles.button,
@@ -15,7 +16,12 @@ function Button({
   ].join(" ");
 
   return (
-    <button className={classNames} onClick={onClick} disabled={disabled}>
+    <button
+      type={type}
+      className={classNames}
+      onClick={onClick}
+      disabled={disabled}
+    >
       {children}
     </button>
   );
