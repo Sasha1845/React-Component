@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 export const useHanoiGame = (difficulty) => {
   const [towers, setTowers] = useState([[], [], []]);
@@ -7,18 +7,18 @@ export const useHanoiGame = (difficulty) => {
   const [isGameStarted, setIsGameStarted] = useState(false);
   const [isGameComplete, setIsGameComplete] = useState(false);
 
-  useEffect(() => {
-    initializeGame();
-  }, [difficulty]);
-
-  const initializeGame = () => {
+  const initializeGame = useCallback(() => {
     const firstTower = Array.from({ length: difficulty }, (_, i) => i + 1);
     setTowers([firstTower, [], []]);
     setSelectedDisk(null);
     setMoves(0);
     setIsGameStarted(false);
     setIsGameComplete(false);
-  };
+  }, [difficulty]);
+
+  useEffect(() => {
+    initializeGame();
+  }, [initializeGame]);
 
   const handleDiskClick = (towerIndex) => {
     if (isGameComplete) return;
@@ -87,5 +87,9 @@ export const useHanoiGame = (difficulty) => {
     isGameComplete,
     handleTowerClick,
     resetGame,
+    setTowers,
+    setMoves,
+    setIsGameStarted,
+    setIsGameComplete,
   };
 };

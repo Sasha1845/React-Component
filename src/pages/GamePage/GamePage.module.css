@@ -26,6 +26,90 @@
   color: #2d3748;
 }
 
+.gameIdBadge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 20px;
+  margin-bottom: 1rem;
+  font-size: 0.85rem;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.gameIdLabel {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
+}
+
+.gameIdValue {
+  color: white;
+  font-weight: bold;
+  font-family: monospace;
+  letter-spacing: 0.5px;
+}
+
+.loading {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  margin: 0 auto 1.5rem;
+  border: 4px solid #edf2f7;
+  border-top: 4px solid #667eea;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading p {
+  color: #718096;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.error {
+  text-align: center;
+  padding: 3rem 2rem;
+}
+
+.errorIcon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.error h2 {
+  color: #e53e3e;
+  font-size: 1.8rem;
+  margin: 0 0 1rem 0;
+}
+
+.error p {
+  color: #4a5568;
+  font-size: 1.1rem;
+  margin: 0.5rem 0;
+}
+
+.errorHint {
+  color: #718096 !important;
+  font-size: 0.95rem !important;
+  font-style: italic;
+  margin-top: 1.5rem !important;
+}
+
 .gameArea {
   margin: 2rem 0;
   padding: 2rem;
@@ -112,39 +196,6 @@
   font-weight: 500;
 }
 
-.completeMessage {
-  text-align: center;
-  padding: 1.5rem;
-  background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
-  border-radius: 12px;
-  margin-top: 1.5rem;
-  color: white;
-  animation: slideIn 0.5s ease;
-}
-
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.completeMessage p {
-  margin: 0.5rem 0;
-  font-size: 1.2rem;
-  font-weight: 600;
-}
-
-.completeHint {
-  font-size: 1rem !important;
-  opacity: 0.9;
-  font-weight: normal !important;
-}
-
 .resultsContainer {
   display: flex;
   flex-direction: column;
@@ -163,5 +214,10 @@
 
   .gameArea {
     padding: 1rem;
+  }
+
+  .gameIdBadge {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.8rem;
   }
 }

@@ -1,15 +1,22 @@
 import Card from "../../components/Card/Card";
 import SettingsForm from "../../components/SettingsForm/SettingsForm";
+import { useGameSession } from "../../hooks/useGameSession";
 import styles from "./StartPage.module.css";
 
-function StartPage({ onStart }) {
+function StartPage() {
+  const { startNewGame } = useGameSession();
+
+  const handleStart = (difficulty) => {
+    startNewGame(difficulty);
+  };
+
   return (
     <div className={styles.startPage}>
       <Card>
         <h1 className={styles.title}>Ханойські Башти</h1>
         <p className={styles.subtitle}>Tower of Hanoi</p>
 
-        <SettingsForm onSubmit={onStart} />
+        <SettingsForm onSubmit={handleStart} />
 
         <div className={styles.rules}>
           <h3>Правила гри:</h3>
