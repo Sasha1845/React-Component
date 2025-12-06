@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import Card from "../../components/Card/Card";
 import Tower from "../../components/Tower/Tower";
@@ -6,24 +7,29 @@ import GameInfo from "../../components/GameInfo/GameInfo";
 import GameCompleteModal from "../../components/GameCompleteModal/GameCompleteModal";
 import { useHanoiGame } from "../../hooks/useHanoiGame";
 import { useGameTimer } from "../../hooks/useGameTimer";
-import { useGameSettings } from "../../contexts/GameSettingsContext";
-import { useGameSession } from "../../hooks/useGameSession";
+import { useSettingsStore } from "../../stores/useSettingsStore";
+import { useGameSessionStore } from "../../stores/useGameSessionStore";
+import { useResultsStore } from "../../stores/useResultsStore";
 import styles from "./GamePage.module.css";
 
 function GamePage() {
-  const { settings } = useGameSettings();
-  const {
-    gameId,
-    gameSession,
-    loading,
-    error,
-    updateSession,
-    finishGame,
-    deleteCurrentGame,
-    restartGame,
-  } = useGameSession();
-
+  const { gameId } = useParams();
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [showModal, setShowModal] = useState(false);
+
+  const showTimer = useSettingsStore((state) => state.showTimer);
+  const showMinMoves = useSettingsStore((state) => state.showMinMoves);
+
+  const getSession = useGameSessionStore((state) => state.getSession);
+  const updateSession = useGameSessionStore((state) => state.updateSession);
+  const deleteSession = useGameSessionStore((state) => state.deleteSession);
+  const createSession = useGameSessionStore((state) => state.createSession);
+
+  const addResult = useResultsStore((state) => state.addResult);
+
+  const gameSession = getSession(gameId);
   const difficulty = gameSession?.difficulty || 3;
 
   const {
@@ -45,18 +51,35 @@ function GamePage() {
   );
 
   useEffect(() => {
-    if (gameSession && gameSession.towers) {
-      setTowers(gameSession.towers);
-      setMoves(gameSession.moves || 0);
-      if (gameSession.isStarted) {
+    if (!gameId) {
+      setLoading(false);
+      return;
+    }
+
+    const session = getSession(gameId);
+
+    if (!session) {
+      setError("Гру не знайдено");
+      setLoading(false);
+      const timer = setTimeout(() => navigate("/"), 2000);
+      return () => clearTimeout(timer);
+    }
+
+    if (session.towers) {
+      setTowers(session.towers);
+      setMoves(session.moves || 0);
+      if (session.isStarted) {
         setIsGameStarted(true);
       }
     }
-  }, [gameSession?.id]);
+
+    setError(null);
+    setLoading(false);
+  }, [gameId, getSession, navigate, setTowers, setMoves, setIsGameStarted]);
 
   useEffect(() => {
     if (gameId && (isGameStarted || isGameComplete)) {
-      updateSession({
+      updateSession(gameId, {
         towers,
         moves,
         time,
@@ -64,42 +87,68 @@ function GamePage() {
         isStarted: isGameStarted,
       });
     }
-  }, [towers, moves, isGameComplete, isGameStarted]);
+  }, [
+    gameId,
+    towers,
+    moves,
+    time,
+    isGameComplete,
+    isGameStarted,
+    updateSession,
+  ]);
 
   const minMoves = Math.pow(2, difficulty) - 1;
 
-  const handleFinish = () => {
+  const handleFinish = useCallback(() => {
     if (isGameComplete) {
-      finishGame({
+      addResult({
+        difficulty,
         moves,
         time,
-        difficulty,
         minMoves,
       });
     }
     setShowModal(true);
-  };
+  }, [isGameComplete, addResult, difficulty, moves, time, minMoves]);
 
-  const handleModalClose = () => {
+  const handleModalClose = useCallback(() => {
     setShowModal(false);
-  };
+  }, []);
 
-  const handleRestart = () => {
+  const handleRestart = useCallback(() => {
     setShowModal(false);
     setIsGameComplete(false);
-    setTimeout(() => {
-      restartGame();
-    }, 50);
-  };
 
-  const handleGoHome = () => {
+    const oldSession = getSession(gameId);
+    if (oldSession) {
+      deleteSession(gameId);
+      const newGameId = createSession(
+        oldSession.difficulty,
+        oldSession.settings
+      );
+      setTimeout(() => {
+        navigate(`/game/${newGameId}`);
+      }, 50);
+    }
+  }, [
+    gameId,
+    getSession,
+    deleteSession,
+    createSession,
+    navigate,
+    setIsGameComplete,
+  ]);
+
+  const handleGoHome = useCallback(() => {
     setShowModal(false);
-    deleteCurrentGame();
-  };
+    deleteSession(gameId);
+    navigate("/");
+  }, [gameId, deleteSession, navigate]);
 
-  const handleBack = () => {
-    deleteCurrentGame();
-  };
+  const handleBack = useCallback(() => {
+    deleteSession(gameId);
+    navigate("/");
+  }, [gameId, deleteSession, navigate]);
 
   if (loading) {
     return (
@@ -158,8 +207,8 @@ function GamePage() {
             moves={moves}
             time={time}
             difficulty={difficulty}
-            showTimer={settings.showTimer}
-            showMinMoves={settings.showMinMoves}
+            showTimer={showTimer}
+            showMinMoves={showMinMoves}
           />
 
           <div className={styles.gameArea}>

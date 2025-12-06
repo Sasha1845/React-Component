@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import Button from "../Button/Button";
-import { useGameSettings } from "../../contexts/GameSettingsContext";
+import { useSettingsStore } from "../../stores/useSettingsStore";
 import styles from "./SettingsForm.module.css";
 
 const schema = yup.object().shape({
@@ -17,7 +17,11 @@ const schema = yup.object().shape({
 });
 
 function SettingsForm({ onSubmit, onCancel }) {
-  const { settings, updateSettings } = useGameSettings();
+  const difficulty = useSettingsStore((state) => state.difficulty);
+  const autoSave = useSettingsStore((state) => state.autoSave);
+  const showTimer = useSettingsStore((state) => state.showTimer);
+  const showMinMoves = useSettingsStore((state) => state.showMinMoves);
+  const updateSettings = useSettingsStore((state) => state.updateSettings);
 
   const {
     register,
@@ -25,7 +29,12 @@ function SettingsForm({ onSubmit, onCancel }) {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
-    defaultValues: settings,
+    defaultValues: {
+      difficulty,
+      autoSave,
+      showTimer,
+      showMinMoves,
+    },
   });
 
   const onFormSubmit = (data) => {

@@ -1,13 +1,25 @@
+import { useNavigate } from "react-router-dom";
 import Card from "../../components/Card/Card";
+import Button from "../../components/Button/Button";
 import SettingsForm from "../../components/SettingsForm/SettingsForm";
-import { useGameSession } from "../../hooks/useGameSession";
+import { useGameSessionStore } from "../../stores/useGameSessionStore";
 import styles from "./StartPage.module.css";
 
 function StartPage() {
-  const { startNewGame } = useGameSession();
+  const navigate = useNavigate();
+  const createSession = useGameSessionStore((state) => state.createSession);
 
   const handleStart = (difficulty) => {
-    startNewGame(difficulty);
+    const gameId = createSession(difficulty, {});
+    navigate(`/game/${gameId}`);
+  };
+
+  const handleGoToSettings = () => {
+    navigate("/settings");
+  };
+
+  const handleGoToResults = () => {
+    navigate("/results");
   };
 
   return (
@@ -17,6 +29,15 @@ function StartPage() {
         <p className={styles.subtitle}>Tower of Hanoi</p>
 
         <SettingsForm onSubmit={handleStart} />
+
+        <div className={styles.navigation}>
+          <Button onClick={handleGoToSettings} variant="secondary" size="large">
+            ⚙️ Налаштування
+          </Button>
+          <Button onClick={handleGoToResults} variant="secondary" size="large">
+            📊 Таблиця результатів
+          </Button>
+        </div>
 
         <div className={styles.rules}>
           <h3>Правила гри:</h3>
