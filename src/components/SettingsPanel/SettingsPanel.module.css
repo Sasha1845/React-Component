@@ -1,0 +1,131 @@
+.settingsPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.section {
+  padding: 1.5rem;
+  background-color: #f7fafc;
+  border-radius: 12px;
+}
+
+.sectionTitle {
+  font-size: 1.3rem;
+  margin: 0 0 1.5rem 0;
+  color: #2d3748;
+}
+
+.difficultyGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+}
+
+.difficultyCard {
+  padding: 1.5rem 1rem;
+  background: white;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.difficultyCard:hover {
+  border-color: #667eea;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+}
+
+.difficultyCard.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-color: #667eea;
+  color: white;
+}
+
+.difficultyLabel {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.difficultyDesc {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.checkboxList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.checkboxItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem;
+  background: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.checkboxItem:hover {
+  background: #edf2f7;
+}
+
+.checkboxItem input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  cursor: pointer;
+  accent-color: #667eea;
+}
+
+.checkboxContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.checkboxLabel {
+  font-weight: 600;
+  color: #2d3748;
+  font-size: 1rem;
+}
+
+.checkboxDesc {
+  font-size: 0.85rem;
+  color: #718096;
+}
+
+.currentSettings {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: white;
+  border-radius: 8px;
+}
+
+.settingRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.settingRow:last-child {
+  border-bottom: none;
+}
+
+.settingRow span {
+  color: #4a5568;
+}
+
+.settingRow strong {
+  color: #667eea;
+}

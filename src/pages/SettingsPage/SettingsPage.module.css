@@ -1,0 +1,18 @@
+.settingsPage {
+  width: 100%;
+  max-width: 700px;
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.title {
+  font-size: 2rem;
+  margin: 0;
+  color: #2d3748;
+}
