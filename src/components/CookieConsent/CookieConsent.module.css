@@ -1,0 +1,70 @@
+.banner {
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  background: rgba(0, 0, 0, 0.85);
+  color: #fff;
+  /* Cookie consent styles (flat selectors) */
+  .banner {
+    position: fixed;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    background: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    border-radius: 8px;
+    padding: 12px;
+    z-index: 9999;
+  }
+  .content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .text a {
+    color: #9ae6b4;
+    margin-left: 6px;
+  }
+  .actions {
+    display: flex;
+    gap: 8px;
+  }
+  .accept {
+    background: #2b6cb0;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .decline {
+    background: transparent;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .save {
+    background: #4a5568;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .categories {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+  }
+  .categories label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+  }
+    border-radius: 4px;

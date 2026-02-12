@@ -12,18 +12,49 @@
             margin: 40px auto;
             padding: 0 16px
         }
+
+        nav.top {
+            margin-bottom: 18px
+        }
+
+        nav.top a {
+            text-decoration: none;
+            color: #0366d6;
+            font-weight: 600
+        }
+
+        ul.links {
+            padding-left: 0;
+            list-style: none;
+            display: flex;
+            gap: 12px;
+            margin: 0
+        }
+
+        ul.links li {
+            margin: 0
+        }
+
+        pre {
+            background: #f6f8fa;
+            padding: 12px;
+            border-radius: 6px
+        }
     </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
     <h1>Documentation</h1>
     <p>Generated documentation and project links:</p>
-    <ul>
-        <li><a href="jsdoc/index.html">API docs (JSDoc)</a></li>
-        <li><a href="../LICENSE">LICENSE</a></li>
-        <li><a href="../PRIVACY.md">PRIVACY.md</a></li>
-        <li><a href="../license-report.txt">license-report.txt</a></li>
-    </ul>
+    <nav class="top">
+        <ul class="links">
+            <li><a href="jsdoc/index.html">Home</a></li>
+            <li><a href="LICENSE.html">LICENSE</a></li>
+            <li><a href="PRIVACY.html">PRIVACY</a></li>
+            <li><a href="../license-report.txt">license-report.txt</a></li>
+        </ul>
+    </nav>
 </body>
 
 </html>

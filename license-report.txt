@@ -11,7 +11,12 @@
 │  ├─ publisher: Fabian Hiller
 │  ├─ path: C:\Users\User\Desktop\React-Component\node_modules\@standard-schema\utils
 │  └─ licenseFile: C:\Users\User\Desktop\React-Component\node_modules\@standard-schema\utils\LICENSE
-├─ @types/react@19.1.16
+├─ @types/prop-types@15.7.15
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
+│  ├─ path: C:\Users\User\Desktop\React-Component\node_modules\@types\prop-types
+│  └─ licenseFile: C:\Users\User\Desktop\React-Component\node_modules\@types\prop-types\LICENSE
+├─ @types/react@18.3.28
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/DefinitelyTyped/DefinitelyTyped
 │  ├─ path: C:\Users\User\Desktop\React-Component\node_modules\@types\react
@@ -23,20 +28,33 @@
 │  ├─ email: shtylman@gmail.com
 │  ├─ path: C:\Users\User\Desktop\React-Component\node_modules\cookie
 │  └─ licenseFile: C:\Users\User\Desktop\React-Component\node_modules\cookie\LICENSE
-├─ csstype@3.1.3
+├─ csstype@3.2.3
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/frenic/csstype
 │  ├─ publisher: Fredrik Nicol
 │  ├─ email: fredrik.nicol@gmail.com
 │  ├─ path: C:\Users\User\Desktop\React-Component\node_modules\csstype
 │  └─ licenseFile: C:\Users\User\Desktop\React-Component\node_modules\csstype\LICENSE
+├─ js-tokens@4.0.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/lydell/js-tokens
+│  ├─ publisher: Simon Lydell
+│  ├─ path: C:\Users\User\Desktop\React-Component\node_modules\js-tokens
+│  └─ licenseFile: C:\Users\User\Desktop\React-Component\node_modules\js-tokens\LICENSE
+├─ loose-envify@1.4.0
+│  ├─ licenses: MIT
+│  ├─ repository: https://github.com/zertosh/loose-envify
+│  ├─ publisher: Andres Suarez
+│  ├─ email: zertosh@gmail.com
+│  ├─ path: C:\Users\User\Desktop\React-Component\node_modules\loose-envify
+│  └─ licenseFile: C:\Users\User\Desktop\React-Component\node_modules\loose-envify\LICENSE
 ├─ property-expr@2.0.6
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/jquense/expr
 │  ├─ publisher: @monasticpanic Jason Quense
 │  ├─ path: C:\Users\User\Desktop\React-Component\node_modules\property-expr
 │  └─ licenseFile: C:\Users\User\Desktop\React-Component\node_modules\property-expr\LICENSE.txt
-├─ react-dom@19.1.1
+├─ react-dom@18.3.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/facebook/react
 │  ├─ path: C:\Users\User\Desktop\React-Component\node_modules\react-dom
@@ -63,12 +81,12 @@
 │  ├─ email: hello@remix.run
 │  ├─ path: C:\Users\User\Desktop\React-Component\node_modules\react-router
 │  └─ licenseFile: C:\Users\User\Desktop\React-Component\node_modules\react-router\LICENSE.md
-├─ react@19.1.1
+├─ react@18.3.1
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/facebook/react
 │  ├─ path: C:\Users\User\Desktop\React-Component\node_modules\react
 │  └─ licenseFile: C:\Users\User\Desktop\React-Component\node_modules\react\LICENSE
-├─ scheduler@0.26.0
+├─ scheduler@0.23.2
 │  ├─ licenses: MIT
 │  ├─ repository: https://github.com/facebook/react
 │  ├─ path: C:\Users\User\Desktop\React-Component\node_modules\scheduler

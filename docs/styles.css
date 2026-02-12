@@ -1,0 +1,76 @@
+/* Shared documentation styles */
+:root {
+  --bg: #f7fafc;
+  --card: #ffffff;
+  --text: #0f1724;
+  --muted: #64748b;
+  --accent: #0366d6;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  padding: 40px 16px;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial;
+  -webkit-font-smoothing: antialiased;
+}
+#main {
+  max-width: 980px;
+  margin: 0 auto;
+  background: var(--card);
+  padding: 28px;
+  border-radius: 10px;
+  box-shadow: 0 8px 30px rgba(2, 6, 23, 0.06);
+}
+h1.page-title {
+  margin: 0 0 8px 0;
+  font-size: 28px;
+}
+nav.top {
+  margin-bottom: 18px;
+}
+ul.links {
+  padding-left: 0;
+  list-style: none;
+  display: flex;
+  gap: 14px;
+  margin: 0;
+}
+ul.links li {
+  margin: 0;
+}
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+pre {
+  background: #f6f8fa;
+  padding: 12px;
+  border-radius: 8px;
+  overflow: auto;
+}
+section#about h2 {
+  margin-top: 0;
+}
+footer {
+  color: var(--muted);
+  font-size: 13px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* small utilities */
+.card {
+  background: #fff;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(15, 23, 36, 0.04);
+}
