@@ -4,40 +4,300 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Privacy Policy</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Privacy Policy - Tower of Hanoi</title>
     <style>
-        pre {
-            background: #f6f8fa;
-            padding: 12px;
-            border-radius: 8px
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --bg-main: #0f172a;
+            --bg-card: #1e293b;
+            --bg-section: #334155;
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --border: #334155;
+            --accent-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            --success: #10b981;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', sans-serif;
+            background: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            padding: 2rem 0;
+            background: var(--accent-gradient);
+            margin-bottom: 2rem;
+            border-radius: 0 0 2rem 2rem;
+            box-shadow: var(--shadow-lg);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--bg-card);
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 0.5rem;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .back-link:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateX(-4px);
+        }
+
+        .main-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .intro {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--primary);
+        }
+
+        .intro p {
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        .section {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--bg-main);
+            border-radius: 0.75rem;
+            border: 1px solid var(--border);
+        }
+
+        h2 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2rem;
+            height: 2rem;
+            background: var(--accent-gradient);
+            border-radius: 50%;
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+        }
+
+        ul {
+            color: var(--text-secondary);
+            margin-left: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-info {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1));
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            border-left: 4px solid var(--success);
+        }
+
+        .contact-info a {
+            color: var(--success);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: rgba(99, 102, 241, 0.2);
+            color: var(--primary);
+            border-radius: 1rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            header {
+                padding: 1.5rem 1rem;
+            }
+
+            .main-card {
+                padding: 1.5rem;
+            }
+
+            .section {
+                padding: 1rem;
+            }
         }
     </style>
 </head>
 
 <body>
-    <div id="main">
-        <h1>Privacy Policy / EULA</h1>
-        <p>This document describes the terms of use of the project and the rules for processing personal data in
-            accordance with the GDPR.</p>
+    <header>
+        <div class="container">
+            <h1>🔒 Privacy Policy</h1>
+            <p class="subtitle">GDPR Compliance & End-User License Agreement</p>
+        </div>
+    </header>
 
-        <h2>1. Data Collection</h2>
-        <p>- The project stores only minimal data in local storage or cookies, and only after the user's explicit
-            consent.</p>
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to Documentation</a>
 
-        <h2>2. Use of Cookies</h2>
-        <p>- Cookies are used to remember the user's choice regarding consent for analytics and advertising.</p>
+        <div class="main-card">
+            <div class="intro">
+                <p>This document describes the terms of use of the project and the rules for processing personal data in
+                    accordance with the GDPR.</p>
+            </div>
 
-        <h2>3. User Rights</h2>
-        <p>- Users may withdraw their consent at any time through the settings interface or by deleting cookies.</p>
+            <div class="section">
+                <h2>
+                    <span class="section-number">1</span>
+                    Data Collection
+                    <span class="badge">GDPR</span>
+                </h2>
+                <ul>
+                    <li>The project stores only minimal data in local storage or cookies, and only after the user's
+                        explicit consent.</li>
+                    <li>No personal data is transmitted to third-party servers without user consent.</li>
+                    <li>All data processing is transparent and user-controlled.</li>
+                </ul>
+            </div>
 
-        <h2>4. Limitation of Liability</h2>
-        <p>- The project is provided "as is" and the author is not liable for any losses or damages.</p>
+            <div class="section">
+                <h2>
+                    <span class="section-number">2</span>
+                    Use of Cookies
+                </h2>
+                <ul>
+                    <li>Cookies are used to remember the user's choice regarding consent for analytics and advertising.
+                    </li>
+                    <li>Essential cookies for site functionality are used by default.</li>
+                    <li>Analytics and marketing cookies are only activated after explicit user consent.</li>
+                    <li>Users can modify their cookie preferences at any time.</li>
+                </ul>
+            </div>
 
-        <h2>5. Contact</h2>
-        <p>- For privacy-related questions, contact: ipz231_ios1@student.ztu.edu.ua</p>
+            <div class="section">
+                <h2>
+                    <span class="section-number">3</span>
+                    User Rights
+                    <span class="badge">Your Rights</span>
+                </h2>
+                <ul>
+                    <li>Users may withdraw their consent at any time through the settings interface or by deleting
+                        cookies.</li>
+                    <li>Right to access: Users can request information about what data is stored.</li>
+                    <li>Right to deletion: Users can request complete deletion of their data.</li>
+                    <li>Right to portability: Users can export their data in a readable format.</li>
+                </ul>
+            </div>
 
+            <div class="section">
+                <h2>
+                    <span class="section-number">4</span>
+                    Limitation of Liability
+                </h2>
+                <ul>
+                    <li>The project is provided "as is" and the author is not liable for any losses or damages.</li>
+                    <li>Users are responsible for their own use of the software.</li>
+                    <li>No warranties are provided regarding functionality or fitness for a particular purpose.</li>
+                </ul>
+            </div>
+
+            <div class="section contact-info">
+                <h2>
+                    <span class="section-number">5</span>
+                    Contact
+                </h2>
+                <p>For privacy-related questions, data access requests, or any concerns, please contact:</p>
+                <p><strong>Email:</strong> <a
+                        href="mailto:ipz231_ios1@student.ztu.edu.ua">ipz231_ios1@student.ztu.edu.ua</a></p>
+                <p><strong>Developer:</strong> <a href="mailto:ishuk.sasha2005@gmail.com">ishuk.sasha2005@gmail.com</a>
+                </p>
+            </div>
+        </div>
     </div>
+
+    <footer>
+        <p>© 2026 Oleksandr Ishchuk. All rights reserved.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem;">Last updated: February 2026</p>
+    </footer>
 </body>
 
 </html>

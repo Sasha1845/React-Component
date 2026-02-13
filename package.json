@@ -11,7 +11,9 @@
     "license-check": "npx license-checker --production > license-report.txt",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "docs": "npx jsdoc -c jsdoc.json"
+    "docs": "node docs/scripts/generateDocs.js",
+    "docs:raw": "npx jsdoc -c jsdoc.json",
+    "docs:clean": "rm -rf docs/jsdoc && npm run docs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

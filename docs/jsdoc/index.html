@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <title>JSDoc: Home</title>
@@ -11,55 +12,311 @@
     <![endif]-->
     <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
     <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+    <style>
+        /* Override JSDoc default styles with dark theme */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --bg-main: #0f172a;
+            --bg-card: #1e293b;
+            --bg-card-hover: #334155;
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --border: #334155;
+            --accent-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+        }
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            background: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        body {
+            padding: 2rem 0;
+        }
+
+        /* Header styles */
+        .page-header {
+            text-align: center;
+            padding: 3rem 0;
+            background: var(--accent-gradient);
+            margin-bottom: 3rem;
+            border-radius: 0 0 2rem 2rem;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .page-header .subtitle {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 300;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--bg-card);
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 0.5rem;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .back-link:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateX(-4px);
+        }
+
+        /* Main container */
+        #main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .container {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        /* Page title */
+        h1.page-title {
+            display: none;
+        }
+
+        /* README content styles */
+        .readme-content {
+            color: var(--text-secondary);
+        }
+
+        .readme-content h2 {
+            color: var(--text-primary);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border);
+            margin-top: 0;
+        }
+
+        .readme-content h3 {
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .readme-content p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .readme-content ul,
+        .readme-content ol {
+            color: var(--text-secondary);
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .readme-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .readme-content code {
+            background: var(--bg-main);
+            color: #a5f3fc;
+            padding: 0.2rem 0.4rem;
+            border-radius: 0.25rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .readme-content pre {
+            background: var(--bg-main);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        .readme-content pre code {
+            background: transparent;
+            padding: 0;
+            color: #a5f3fc;
+        }
+
+        .readme-content hr {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 2rem 0;
+        }
+
+        .readme-content a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .readme-content a:hover {
+            color: var(--secondary);
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            margin-top: 3rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            #main {
+                padding: 0 1rem;
+            }
+
+            .container {
+                padding: 1.5rem;
+            }
+
+            .page-header {
+                padding: 2rem 1rem;
+                margin-bottom: 2rem;
+            }
+        }
+    </style>
 </head>
 
 <body>
+    <div class="page-header">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
+            <h1>📖 README</h1>
+            <p class="subtitle">Tower of Hanoi Documentation</p>
+        </div>
+    </div>
 
-<div id="main">
+    <div id="main">
+        <a href="../index.html" class="back-link">← Back to Documentation</a>
 
-    <h1 class="page-title">Home</h1>
+        <div class="container">
+            <h1 class="page-title">Home</h1>
 
-    
+            <div class="readme-content">
+                <h2>Tower of Hanoi — React Components</h2>
+                <p>Набір React-компонентів для навчального проєкту «Tower of Hanoi». Мета — демонстрація
+                    компонентної архітектури, Storybook-історій та згенерованої документації.</p>
+                <hr>
+                <h3>👤 Автор</h3>
+                <p><strong>Oleksandr Ishchuk</strong> — <a
+                        href="mailto:ishuk.sasha2005@gmail.com">ishuk.sasha2005@gmail.com</a></p>
+                <hr>
+                <h3>🚀 Швидкий старт</h3>
+                <p>Встановіть залежності та запустіть в режимі розробки:</p>
+                <pre><code class="language-bash">npm install
+npm run dev</code></pre>
 
+                <p>Запуск Storybook (UI-компоненти):</p>
+                <pre><code class="language-bash">npm run storybook
+# відкрити http://localhost:6006</code></pre>
 
+                <p>Збірка продакшену та локальний перегляд:</p>
+                <pre><code class="language-bash">npm run build
+npm run preview</code></pre>
 
-    
+                <hr>
+                <h3>⚙️ Ключові команди</h3>
+                <ul>
+                    <li><code>npm run dev</code> — запуск Vite для розробки</li>
+                    <li><code>npm run build</code> — збірка проєкту</li>
+                    <li><code>npm run preview</code> — локальний перегляд збірки</li>
+                    <li><code>npm run storybook</code> — запустити Storybook</li>
+                    <li><code>npm run build-storybook</code> — зібрати Storybook</li>
+                    <li><code>npm run docs</code> — згенерувати JSDoc документацію (налаштовано в
+                        <code>jsdoc.json</code> →
+                        <code>docs/jsdoc</code>)
+                    </li>
+                    <li><code>npm run license-check</code> — згенерувати <code>license-report.txt</code></li>
+                </ul>
 
+                <hr>
+                <h3>📁 Файли та документація</h3>
+                <ul>
+                    <li><code>LICENSE</code> / <a href="../LICENSE.html">docs/LICENSE.html</a> — ліцензія (MIT).</li>
+                    <li><code>PRIVACY.md</code> / <a href="../PRIVACY.html">docs/PRIVACY.html</a> — політика приватності
+                        (GDPR).</li>
+                    <li><code>license-report.txt</code> — звіт від <code>license-checker</code> у корені.</li>
+                    <li><code>docs/</code> — згенерована документація (відкривати <a
+                            href="../index.html">docs/index.html</a>).</li>
+                    <li><code>.storybook/</code> — конфіг Storybook; історії в
+                        <code>src/components/*/*.stories.*</code>.
+                    </li>
+                </ul>
 
-    <h3> </h3>
+                <hr>
+                <h3>🍪 Cookie / Конфіденційність (GDPR)</h3>
+                <p>Компонент згоди на cookie: <code>src/components/CookieConsent/CookieConsent.jsx</code>.
+                    Він зберігає вибір у <code>localStorage</code> та ініціалізує модуль аналітики лише за згодою.</p>
+                <p>Документ політики: <code>PRIVACY.md</code> (є локальна HTML-версія в <a
+                        href="../PRIVACY.html">docs/PRIVACY.html</a>).</p>
 
+                <hr>
+                <h3>📖 Storybook</h3>
+                <p>Налаштовано Storybook; у проекті є приклади історій для <code>Button</code> і <code>Card</code>.
+                    Перевірте візуально: <code>npm run storybook</code> → <a href="http://localhost:6006"
+                        target="_blank">http://localhost:6006</a></p>
 
+                <hr>
+                <h3>🤝 Внесок</h3>
+                <ol>
+                    <li>Зробіть форк репозиторію.</li>
+                    <li>Створіть будь яку гілку &lt;branch/your-branch&gt;</li>
+                    <li>Додайте зміни</li>
+                    <li>Відкрийте Pull Request</li>
+                </ol>
 
-
-
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-</div>
-
-<nav>
-    <h2><a href="index.html">Home</a></h2>
-</nav>
-
-<br class="clear">
-
-<footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.5</a> on Thu Feb 12 2026 17:18:54 GMT+0100 (за центральноєвропейським стандартним часом)
-</footer>
-
-<script> prettyPrint(); </script>
-<script src="scripts/linenumber.js"> </script>
+                <hr>
+                <h3>📧 Контакти</h3>
+                <p><strong>Oleksandr Ishchuk</strong> — <a
+                        href="mailto:ishuk.sasha2005@gmail.com">ishuk.sasha2005@gmail.com</a></p>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>
