@@ -2,6 +2,7 @@ export function init() {
   try {
     // eslint-disable-next-line no-console
     console.log("Analytics initialized (stub)");
+    // eslint-disable-next-line no-unused-vars
   } catch (e) {
     // ignore
   }

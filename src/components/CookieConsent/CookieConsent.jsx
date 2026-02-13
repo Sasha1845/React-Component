@@ -1,68 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styles from "./CookieConsent.module.css";
 
-const STORAGE_KEY = "cookie_consent";
-
-function readStored() {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return null;
-    return JSON.parse(raw);
-  } catch {
-    return null;
-  }
-}
-
-function saveStored(obj) {
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(obj));
-    // eslint-disable-next-line no-unused-vars
-  } catch (e) {
-    // ignore
-  }
-}
-
 function CookieConsent() {
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(true); // Показуємо банер одразу
   const [consent, setConsent] = useState({
     necessary: true,
     analytics: false,
     marketing: false,
   });
 
-  useEffect(() => {
-    const stored = readStored();
-    if (!stored) {
-      setVisible(true);
-    } else {
-      setConsent({
-        necessary: true,
-        analytics: !!stored.analytics,
-        marketing: !!stored.marketing,
-      });
-      // initialize analytics if previously accepted
-      if (stored.analytics) {
-        import("../../utils/analytics")
-          .then((m) => m.init())
-          .catch(() => {});
-      }
-    }
-  }, []);
-
   function acceptAll() {
     const next = { necessary: true, analytics: true, marketing: true };
     setConsent(next);
-    saveStored(next);
     setVisible(false);
-    import("../../utils/analytics")
-      .then((m) => m.init())
-      .catch(() => {});
+    // Тут можна додати логіку ініціалізації аналітики
+    console.log("Analytics enabled");
   }
 
   function declineAll() {
     const next = { necessary: true, analytics: false, marketing: false };
     setConsent(next);
-    saveStored(next);
     setVisible(false);
   }
 
@@ -73,18 +30,20 @@ function CookieConsent() {
       marketing: !!consent.marketing,
     };
     setConsent(next);
-    saveStored(next);
     setVisible(false);
-    if (next.analytics)
-      import("../../utils/analytics")
-        .then((m) => m.init())
-        .catch(() => {});
+    if (next.analytics) {
+      console.log("Analytics enabled");
+    }
   }
 
   if (!visible) return null;
 
   return (
-    <div className={styles.banner} role="dialog" aria-live="polite">
+    <div
+      className={`${styles.banner} ${styles.visible}`}
+      role="dialog"
+      aria-live="polite"
+    >
       <div className={styles.content}>
         <div className={styles.text}>
           Ми використовуємо cookie для покращення роботи сайту. Деталі — у
